@@ -1,11 +1,9 @@
-package Array;
+package structure.Array;
 
 import util.Logger;
 
-import java.util.*;
-
 /**
- * 插入快、查找慢、删除慢、扩展性差
+ * Array
  */
 
 public class MyArray {
