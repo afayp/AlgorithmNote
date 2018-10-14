@@ -1,12 +1,12 @@
 package structure.Stack;
 
-public class MyStack {
+public class StackBaseOnArray {
 
     private int[] array;
     private int maxSize;
     private int top;
 
-    public MyStack(int maxSize) {
+    public StackBaseOnArray(int maxSize) {
         this.maxSize = maxSize;
         this.array = new int[maxSize];
         this.top = -1;

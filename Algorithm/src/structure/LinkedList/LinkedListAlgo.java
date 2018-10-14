@@ -30,6 +30,102 @@ public class LinkedListAlgo {
         return headNode;
     }
 
+    // 检测环
+    public static boolean checkCircle(Node head) {
+        if (head == null || head.next == null) return false;
+
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) return true;
+        }
+        return false;
+    }
+
+
+    // 有序链表合并
+    public static Node mergeSortedLists(Node la, Node lb) {
+        if (la == null) return lb;
+        if (lb == null) return la;
+
+        Node p = la;
+        Node q = lb;
+        Node head;
+        if (p.data < q.data) {
+            head = p;
+            p = p.next;
+        } else {
+            head = q;
+            q = q.next;
+        }
+        Node r = head;
+
+        while (p != null && q != null) {
+            if (p.data < q.data) {
+                r.next = p;
+                p = p.next;
+            } else {
+                r.next = q;
+                q = q.next;
+            }
+            r = r.next;
+        }
+
+        if (p != null) {
+            r.next = p;
+        } else {
+            r.next = q;
+        }
+
+        return head;
+    }
+
+    // 删除倒数第K个结点
+    public static Node deleteLastKth(Node list, int k) {
+        Node fast = list;
+        int i = 1;
+        while (fast != null && i < k) {
+            fast = fast.next;
+            ++i;
+        }
+
+        if (fast == null) return list;
+
+        Node slow = list;
+        Node prev = null;
+        while (fast.next != null) {
+            fast = fast.next;
+            prev = slow;
+            slow = slow.next;
+        }
+
+        if (prev == null) {
+            list = list.next;
+        } else {
+            prev.next = prev.next.next;
+        }
+        return list;
+    }
+
+    // 求中间结点
+    public static Node findMiddleNode(Node list) {
+        if (list == null) return null;
+
+        Node fast = list;
+        Node slow = list;
+
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow;
+    }
+
 
 
 

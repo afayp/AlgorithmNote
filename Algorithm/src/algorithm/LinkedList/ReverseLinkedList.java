@@ -13,6 +13,11 @@ package algorithm.LinkedList;
  */
 public class ReverseLinkedList {
 
+
+    /**
+     * Time complexity : O(n). Assume that nn is the list's length, the time complexity is O(n)O(n).
+     * Space complexity : O(1).
+     */
     public ListNode reverseList(ListNode head) {
 
         ListNode currentNode = head;
