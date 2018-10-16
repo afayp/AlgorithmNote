@@ -2,7 +2,7 @@ package algorithm.LinkedList;
 
 
 /**
- * 24.swap nodes in pairs
+ * 24.swap nodes in pairs （成对交换节点）
  给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 
  示例:

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 141.Linked List Cycle
+ * 141.Linked List Cycle （环形链表）
  *
  给定一个链表，判断链表中是否有环。
 

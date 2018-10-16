@@ -2,7 +2,7 @@ package algorithm.LinkedList;
 
 
 /**
- * 206.Reverse Linked List
+ * 206.Reverse Linked List （反转链表）
  *
  * 反转一个单链表。
  * 示例:
