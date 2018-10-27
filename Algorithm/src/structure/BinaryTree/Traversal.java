@@ -20,7 +20,7 @@ public class Traversal {
 
 
     //--------------------------------------- 广度优先搜索/层次遍历(BFS)----------------------------------------//
-    public List<List<Integer>> bfs(TreeNode root) {
+    public static List<List<Integer>> bfs(TreeNode root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(root == null) return result;
         // method 1 递归
