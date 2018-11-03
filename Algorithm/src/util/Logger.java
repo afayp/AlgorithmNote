@@ -1,5 +1,6 @@
 package util;
 
+// log
 public class Logger {
 
     public static void println() {
