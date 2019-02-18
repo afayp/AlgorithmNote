@@ -1,52 +1,36 @@
 package jzoffer;
 
-import java.util.Stack;
+import jzoffer.model.TreeNode;
 
 /**
- * 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。
- *
- *
- * 思路：in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。
- * 一个元素进入 in 栈之后，出栈的顺序被反转。
- * 当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，
- * 因此出栈顺序就和最开始入栈顺序是相同的，先进入的元素先退出，这就是队列的顺序。
+ * 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+ * <p>
+ * preorder = [3,9,20,15,7]
+ * inorder =  [9,3,15,20,7]
+ * <p>
+ * 思路：前序遍历的第一个值为根节点的值，使用这个值将中序遍历结果分成两部分，
+ * 左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。
  */
 public class No07 {
 
-    class MyQueue {
-        Stack<Integer> pushStack = new Stack<>();
-        Stack<Integer> popStack = new Stack<>();
+    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+        TreeNode root = reConstructBinaryTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
+        return root;
+    }
 
+    private TreeNode reConstructBinaryTree(int[] pre, int startPre, int endPre, int[] in, int startIn, int endIn) {
 
-        /** Push element x to the back of queue. */
-        public void push(int x) {
-            pushStack.push(x);
-        }
+        if (startPre > endPre || startIn > endIn)
+            return null;
+        TreeNode root = new TreeNode(pre[startPre]);
 
-        /** Removes the element from in front of queue and returns that element. */
-        public int pop() {
-            if (popStack.isEmpty()) {
-                while (!pushStack.isEmpty()) {
-                    popStack.push(pushStack.pop());
-                }
+        for (int i = startIn; i <= endIn; i++)
+            if (in[i] == pre[startPre]) {
+                root.left = reConstructBinaryTree(pre, startPre + 1, startPre + i - startIn, in, startIn, i - 1);
+                root.right = reConstructBinaryTree(pre, i - startIn + startPre + 1, endPre, in, i + 1, endIn);
+                break;
             }
-            return popStack.pop();
-        }
 
-        /** Get the front element. */
-        public int peek() {
-            if (popStack.isEmpty()) {
-                while (!pushStack.isEmpty()) {
-                    popStack.push(pushStack.pop());
-                }
-            }
-            return popStack.peek();
-        }
-
-        /** Returns whether the queue is empty. */
-        public boolean empty() {
-            return pushStack.isEmpty() && popStack.isEmpty();
-        }
-
+        return root;
     }
 }

@@ -1,48 +1,37 @@
 package jzoffer;
 
+/**
+ * https://www.nowcoder.com/ta/coding-interviews
+ */
 public class No04 {
 
-
     /**
-     * 请实现一个函数，把字符串中的每个空格替换成"%20"。
-     * 例如输入"We are happy"，则输出"We%20are%20happy"
+     * 在一个二维数组中，每一行都按照从左到右递增
+     * 的顺序排序，每一列都按照从上到下递增的顺序排序。
+     * 请完成一个函数，输入这样的一个二维数组
+     * 和一个整数，判断数组中是否函数该整数。
      */
     public static void main(String[] args) {
-        String str = "We are happy";
-        System.out.println(replaceSpace(str.toCharArray()));
+        int[][] arr = {{1, 2, 8, 9},
+                {2, 4, 9, 12},
+                {4, 7, 10, 13},
+                {6, 8, 11, 15}};
+
+        System.out.println(search(arr, 7));
     }
 
 
-    public static String replaceSpace(char[] charArray) {
-        int spaceNum = 0;
-        for (int i = 0; i < charArray.length; i++) {
-            if (charArray[i] == ' ') {
-                spaceNum++;
-            }
+    public static boolean search(int[][] array, int target) {
+        int row = 0;
+        int col = array[0].length - 1;
+        while (row <= array.length - 1 && col >= 0) {
+            if (target == array[row][col])
+                return true;
+            else if (target > array[row][col])
+                row++;
+            else
+                col--;
         }
-        if (spaceNum == 0) {
-            return new String(charArray);
-        }
-
-        int indexOld = charArray.length - 1;
-        int newLength = charArray.length + 2 * spaceNum;
-        int indexNew = newLength - 1;
-
-        char[] newChar = new char[newLength];
-
-        while (indexOld >= 0) {
-
-            if (charArray[indexOld] == ' ') {
-                newChar[indexNew] = '0';
-                newChar[indexNew - 1] = '2';
-                newChar[indexNew - 2] = '%';
-                indexNew = indexNew - 3;
-            } else {
-                newChar[indexNew] = charArray[indexOld];
-                indexNew--;
-            }
-            indexOld--;
-        }
-        return new String(newChar);
+        return false;
     }
 }

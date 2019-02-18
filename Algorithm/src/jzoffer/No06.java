@@ -1,36 +1,36 @@
 package jzoffer;
 
-import jzoffer.model.TreeNode;
+import jzoffer.model.ListNode;
+
+import java.util.ArrayList;
+import java.util.Stack;
 
 /**
- * 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
- * <p>
- * preorder = [3,9,20,15,7]
- * inorder =  [9,3,15,20,7]
- * <p>
- * 思路：前序遍历的第一个值为根节点的值，使用这个值将中序遍历结果分成两部分，
- * 左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。
+ * 输入链表的第一个节点，从尾到头反过来打印出每个结点的值。
  */
 public class No06 {
 
-    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
-        TreeNode root = reConstructBinaryTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
-        return root;
-    }
 
-    private TreeNode reConstructBinaryTree(int[] pre, int startPre, int endPre, int[] in, int startIn, int endIn) {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
 
-        if (startPre > endPre || startIn > endIn)
-            return null;
-        TreeNode root = new TreeNode(pre[startPre]);
+        ArrayList<Integer> result = new ArrayList<>();
 
-        for (int i = startIn; i <= endIn; i++)
-            if (in[i] == pre[startPre]) {
-                root.left = reConstructBinaryTree(pre, startPre + 1, startPre + i - startIn, in, startIn, i - 1);
-                root.right = reConstructBinaryTree(pre, i - startIn + startPre + 1, endPre, in, i + 1, endIn);
-                break;
-            }
+        // 栈
+//        Stack<Integer> stack = new Stack<>();
+//        while (listNode != null) {
+//            stack.push(listNode.val);
+//            listNode = listNode.next;
+//        }
+//        while (!stack.isEmpty()) {
+//            result.add(stack.pop());
+//        }
 
-        return root;
+        //递归
+        if (listNode != null) {
+            result.addAll(printListFromTailToHead(listNode.next));
+            result.add(listNode.val);
+        }
+
+        return result;
     }
 }

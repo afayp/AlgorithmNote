@@ -1,36 +1,48 @@
 package jzoffer;
 
-import jzoffer.model.ListNode;
-
-import java.util.ArrayList;
-import java.util.Stack;
-
-/**
- * 输入链表的第一个节点，从尾到头反过来打印出每个结点的值。
- */
 public class No05 {
 
 
-    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+    /**
+     * 请实现一个函数，把字符串中的每个空格替换成"%20"。
+     * 例如输入"We are happy"，则输出"We%20are%20happy"
+     */
+    public static void main(String[] args) {
+        String str = "We are happy";
+        System.out.println(replaceSpace(str.toCharArray()));
+    }
 
-        ArrayList<Integer> result = new ArrayList<>();
 
-        // 栈
-//        Stack<Integer> stack = new Stack<>();
-//        while (listNode != null) {
-//            stack.push(listNode.val);
-//            listNode = listNode.next;
-//        }
-//        while (!stack.isEmpty()) {
-//            result.add(stack.pop());
-//        }
-
-        //递归
-        if (listNode != null) {
-            result.addAll(printListFromTailToHead(listNode.next));
-            result.add(listNode.val);
+    public static String replaceSpace(char[] charArray) {
+        int spaceNum = 0;
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] == ' ') {
+                spaceNum++;
+            }
+        }
+        if (spaceNum == 0) {
+            return new String(charArray);
         }
 
-        return result;
+        int indexOld = charArray.length - 1;
+        int newLength = charArray.length + 2 * spaceNum;
+        int indexNew = newLength - 1;
+
+        char[] newChar = new char[newLength];
+
+        while (indexOld >= 0) {
+
+            if (charArray[indexOld] == ' ') {
+                newChar[indexNew] = '0';
+                newChar[indexNew - 1] = '2';
+                newChar[indexNew - 2] = '%';
+                indexNew = indexNew - 3;
+            } else {
+                newChar[indexNew] = charArray[indexOld];
+                indexNew--;
+            }
+            indexOld--;
+        }
+        return new String(newChar);
     }
 }
