@@ -26,7 +26,7 @@ public class Traversal {
         // method 1 递归
         //bfsHelper(result,root,0);
 
-        // method 2 栈
+        // method 2 队列
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
         int curL = 0;
@@ -177,4 +177,7 @@ public class Traversal {
             val = x;
         }
     }
+
+
+
 }

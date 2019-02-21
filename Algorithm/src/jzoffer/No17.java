@@ -11,13 +11,13 @@ public class No17 {
      * 使用回溯法得到所有的数。
      */
 
-
     public void print1ToMaxOfNDigits(int n) {
         if (n <= 0)
             return;
         char[] number = new char[n];
         print1ToMaxOfNDigits(number, 0);
     }
+
 
     private void print1ToMaxOfNDigits(char[] number, int digit) {
         if (digit == number.length) {
@@ -30,6 +30,7 @@ public class No17 {
         }
     }
 
+    // 012 index=1 -> 12/n
     private void printNumber(char[] number) {
         int index = 0;
         while (index < number.length && number[index] == '0')

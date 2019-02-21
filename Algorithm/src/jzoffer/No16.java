@@ -33,5 +33,4 @@ public class No16 {
         return isNegative ? 1 / pow : pow;
     }
 
-
 }
