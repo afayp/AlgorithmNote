@@ -1,5 +1,7 @@
 package algorithm.LinkedList;
 
+import java.util.Stack;
+
 /**
  * 234.Palindrome Linked List (回文链表)
 
@@ -23,14 +25,24 @@ public class PalindromeLinkedList {
     public boolean isPalindrome(ListNode head) {
 
         ListNode fast = head, slow = head;
+        Stack<Integer> stack = new Stack<>();
 
         while (fast != null && fast.next != null) {
+            stack.push(slow.val);
             slow = slow.next;
             fast = fast.next.next;
         }
         if (fast != null) {
             slow = slow.next;
         }
+//        while (slow != null) {
+//            if (stack.pop() != slow.val) {
+//                return false;
+//            }
+//            slow = slow.next;
+//        }
+//        return true;
+
 
         slow = reverse(slow);
         fast = head;
@@ -64,4 +76,6 @@ public class PalindromeLinkedList {
             this.val = val;
         }
     }
+
+
 }

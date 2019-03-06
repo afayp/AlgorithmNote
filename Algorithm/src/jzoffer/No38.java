@@ -31,16 +31,16 @@ public class No38 {
         return (ArrayList)res;
     }
 
-    public void PermutationHelper(char[] cs, int i, List<String> list) {
-        if (i == cs.length - 1) {
+    public void PermutationHelper(char[] cs, int index, List<String> list) {
+        if (index == cs.length - 1) {
             String val = String.valueOf(cs);
             if (!list.contains(val))
                 list.add(val);
         } else {
-            for (int j = i; j < cs.length; j++) {
-                swap(cs, i, j);
-                PermutationHelper(cs, i+1, list);
-                swap(cs, i, j); // 还原回来
+            for (int i = index; i < cs.length; i++) {
+                swap(cs, index, i);
+                PermutationHelper(cs, index+1, list);
+                swap(cs, index, i); // 还原回来
             }
         }
     }
